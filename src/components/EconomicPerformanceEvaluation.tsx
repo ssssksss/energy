@@ -36,9 +36,6 @@ const EconomicPerformanceEvaluation = (props: any) => {
   const [airPrice, setAirPrice] = useState();
   const [waterPrice, setWaterPrice] = useState();
 
-  console.log('EconomicPerformanceEvaluation.tsx 파일 : ', labelsData);
-  console.log('EconomicPerformanceEvaluation.tsx 파일 : ', labelsData.length);
-
   const yearLength = data => {
     let temp = [0];
     let airPriceList = [data[2]];
@@ -106,7 +103,7 @@ const EconomicPerformanceEvaluation = (props: any) => {
         </RateBox>
         <RatingBox>
           <TitleBox> 분기점 </TitleBox>
-          <div> {labelsData.length} 년 </div>{' '}
+          <div> {labelsData?.length ? labelsData?.length : 0} 년 </div>{' '}
         </RatingBox>
       </CC.RowDiv>
     </Container>
