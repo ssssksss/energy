@@ -2,10 +2,9 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { MouseEventHandler, ReactNode, useCallback } from 'react';
 import { animationKeyFrames } from '@/styles/animationKeyFrames';
+import { commonTheme } from '@/styles/theme';
 
-interface ButtonProps {
-  onClick?: (event: any) => void;
-  onClickCapture?: (event: any) => void;
+interface ShellProps {
   children: ReactNode;
   disabled?: boolean;
   color?:
@@ -22,7 +21,6 @@ interface ButtonProps {
   outline?: boolean;
   w?: string;
   h?: string;
-  bg?: string;
   brR?: string;
   fontFamily?: string;
   fontWeight?: number;
@@ -35,13 +33,11 @@ interface ButtonProps {
  * @param color = "red" | "orange" | "yellow" | "green" | "blue" | "skyblue" | "purple" | "pink" | "white" | "disabled";
  * @param size = "xs" | "sm" | "md" | "lg" | "xl";
  */
-export const Button = ({
-  onClick: _onClick,
-  onClickCapture: _onClickCapture,
-  children = 'button',
+export const Shell = ({
+  children = 'Shell',
   disabled = false,
   color,
-  size,
+  size = 'sm',
   w,
   h,
   pd,
@@ -52,51 +48,32 @@ export const Button = ({
   outline,
   styleTypes,
   ...props
-}: ButtonProps) => {
-
-  const onClick: MouseEventHandler<HTMLButtonElement> = useCallback(
-    event => {
-      if (props.disabled) return;
-      _onClick?.(event);
-    },
-    [_onClick, disabled]
-    );
-    
-    const onClickCapture: MouseEventHandler<HTMLButtonElement> = useCallback(
-      event => {
-      if (props.disabled) return;
-      _onClickCapture?.(event);
-    },
-    [_onClickCapture, disabled]
-  );
-
+}: ShellProps) => {
   return (
-    <ButtonStyle
-      onClick={onClick} 
-      onClickCapture={onClickCapture}// {onClick}은 위에서 정의한 함수이다.
-      disabled={disabled}
-      color={color}
-      size={size}
-      width={w}
-      height={h}
-      padding={pd}
-      background={bg}
-      borderRadius={brR}
-      outline={outline}
-      fontFamily={fontFamily}
-      fontWeight={fontWeight}
-      styleTypes={styleTypes}
+    <ShellStyle
+    disabled={disabled}
+    color={color}
+    size={size}
+    width={w}
+    height={h}
+    padding={pd}
+    background={bg}
+    borderRadius={brR}
+    outline={outline}
+    fontFamily={fontFamily}
+    fontWeight={fontWeight}
+    styleTypes={styleTypes}
       {...props}
     >
       {children}
-    </ButtonStyle>
+    </ShellStyle>
   );
 };
 
-export default Button;
+export default Shell;
 
-const ButtonStyle = styled.button<IButtonProps>`
-  padding: ${props=>props.padding};
+const ShellStyle = styled.div<IShellProps>`
+  padding: ${props=>props.padding || "2px 4px"};
   min-width: 24px;
   min-height: 24px;
   ${props => props.theme.flex.row.center.center};
@@ -106,15 +83,12 @@ const ButtonStyle = styled.button<IButtonProps>`
   background: ${props => props.theme.colors.[props.background] || props.theme.main.[props.background] || props.theme.main.primary80};
   font-family: ${props=>props.theme.fontFamily.[props.fontFamily]};
   font-weight: ${props=>props.fontWeight};
-  font-size: 1rem;
+  font-size: 1em;
   /* background-color: ${props => commonTheme.backgroundColors[props.color]}; */
   /* border-radius: ${props =>
     commonTheme.btnSizes[props.size].borderRadius}; */
   /* width: ${props => commonTheme.btnSizes[props.size].width}; */
 
-  &:hover {
-    cursor: pointer;
-  }
   /* 순서주의 */
   ${props =>
     props.disabled &&
@@ -140,7 +114,7 @@ ${props=>props.styleTypes === 1 && `
     box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.25);
     color: ${props.theme.colors.white80};
   `}
-font-size: ${props => props.size === "xs" ? "0.6rem" : props.size === "sm" ? "0.7rem" : "1rem"};
+
 height: ${props => props.height};
 ${props => `width: ${props.width || 'max-content'}`};
 `;

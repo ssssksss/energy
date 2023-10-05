@@ -38,13 +38,20 @@ const deviceSizes = {
   maxWidth: '1440px',
 };
 
-const fontFamily = {
-  cookieRunOTFBlack: 'cookieRunOTFBlack',
+interface IFontFamily {
+  cookieRunRegular: string;
+  gmarketSansBold: string;
+  typoHelloPOP: string;
+  yanoljaYacheBold: string;
+  yanoljaYacheRegular: string;
+}
+
+const fontFamily: IFontFamily = {
   cookieRunRegular: 'cookieRunRegular',
-  GmarketSansTTFBold: 'GmarketSansTTFBold',
-  gmarketSansTTF: 'gmarketSansTTF',
-  typeHelloPop: 'typeHelloPop',
-  yanolja: 'yanolja',
+  gmarketSansBold: 'gmarketSansBold',
+  typoHelloPOP: 'typoHelloPOP',
+  yanoljaYacheBold: 'yanoljaYacheBold',
+  yanoljaYacheRegular: 'yanoljaYacheRegular',
 };
 
 // 버튼은 그때마다 사이즈가 달라서 설정이 필요한지 잘 모르겠다.
@@ -268,6 +275,7 @@ const colors = {
   white60: '#F9F9F9',
   white40: '#F5F5F5',
   white20: '#F2F2F2',
+  transparent: 'transparent',
 };
 
 const linearGradientColors = {
@@ -412,6 +420,11 @@ const flex = {
         alignItems: 'space-between',
       },
     },
+    start: {
+      display: 'flex',
+      flexFlow: 'nowrap row',
+      justifyContent: 'flex-start',
+    },
     end: {
       display: 'flex',
       justifyContent: 'flex-end',
@@ -470,6 +483,14 @@ const flex = {
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
       },
+      center: {
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        flexFlow: 'nowrap column',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+      },
     },
     between: {
       display: 'flex',
@@ -497,6 +518,21 @@ const flex = {
   },
 };
 
+const grid = {
+  column2: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, 1fr)',
+  },
+  column3: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(3, 1fr)',
+  },
+  column4: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(4, 1fr)',
+  },
+};
+
 export const commonTheme = {
   fontSizes,
   borderRadius,
@@ -508,20 +544,21 @@ export const commonTheme = {
   inputSizes,
   linearGradientColors,
   flex,
+  grid,
 };
 
 export const darkTheme = {
   main: {
-    primary100: colors.purple100,
-    primary80: colors.purple80,
-    primary60: colors.purple60,
-    primary40: colors.purple40,
-    primary20: colors.purple20,
-    secondary100: colors.blue100,
-    secondary80: colors.blue80,
-    secondary60: colors.blue60,
-    secondary40: colors.blue40,
-    secondary20: colors.blue20,
+    primary100: colors.black100,
+    primary80: colors.black80,
+    primary60: colors.black60,
+    primary40: colors.black40,
+    primary20: colors.black20,
+    secondary100: colors.gray100,
+    secondary80: colors.gray80,
+    secondary60: colors.gray60,
+    secondary40: colors.gray40,
+    secondary20: colors.gray20,
     third100: colors.orange100,
     third80: colors.orange80,
     third60: colors.orange60,
@@ -532,7 +569,7 @@ export const darkTheme = {
   ...commonTheme,
 };
 
-export const lightTheme = {
+export const purpleTheme = {
   main: {
     primary100: colors.purple100,
     primary80: colors.purple80,

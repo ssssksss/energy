@@ -113,32 +113,30 @@ export default EconomicPerformanceEvaluation;
 
 const Container = styled.section`
   ${props => props.theme.flex.column._.center};
+  height: 240px;
+  width: 500px;
 `;
 const TitleBox = styled.h1`
   padding: 10px 0px;
 `;
 const RateBox = styled.div`
   position: relative;
-  width: 600px;
-  height: 300px;
+  width: 400px;
   outline: solid black 1px;
   padding: 10px;
+  height: 100%;
 `;
 
 const RatingBox = styled.div`
   ${props => props.theme.flex.column.center.center};
-  width: 200px;
-  height: 300px;
+  width: 100px;
   outline: solid black 1px;
+  height: 100%;
 
   & > div {
-    background: ${props => props.theme.colors.blue60};
-    width: 60%;
-    aspect-ratio: 1;
     ${props => props.theme.flex.row.center.center};
     font-family: ${props => props.theme.fontFamily.GmarketSansTTFBold};
-    border-radius: 50%;
-    color: white;
-    font-size: 32px;
+    color: ${props => props.theme.colors.black80};
+    font-size: 24px;
   }
 `;

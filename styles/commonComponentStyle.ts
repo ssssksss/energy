@@ -18,6 +18,8 @@ interface IStyleProps {
   noCursor?: boolean; // 나중에 삭제 고려해보기 별 필요없는 props
   imgSize?: string; // 이미지 정사각형 형태일때 사용하는 용도인데 나중에 고려해보기
   fontSize?: string;
+  overflow?: boolean
+  outline?: boolean;
 }
 
 const propsCommonStyle = (props: any) => css`
@@ -30,10 +32,17 @@ const propsCommonStyle = (props: any) => css`
   min-height: ${props.minH};
   width: ${props.w};
   min-width: ${props.minW};
-  background: ${props.bg};
+  background: ${props.theme.colors.[props.bg] || props.theme.main.[props.bg]};
   max-width: ${props.maxW};
   color: ${props.color};
   font-size: ${props.fontSize};
+  overflow: ${props.overflow && 'scroll'};
+  ${
+    props.outline &&
+    css`
+      outline: solid ${props.theme.colors.[props.color] || props.theme.main.[props.color] || props.theme.main.primary80} 1px;
+      background: transparent;
+    `};
 `;
 
 const RowDiv = styled.div<IStyleProps>`
@@ -78,6 +87,14 @@ const ColumnDiv = styled.div<IStyleProps>`
   ${commonTheme.flex.column}
   ${(props: any) => propsCommonStyle(props)};
 `;
+const ColumnStartDiv = styled.div<IStyleProps>`
+  ${commonTheme.flex.column.start}
+  ${(props: any) => propsCommonStyle(props)};
+`;
+const ColumnStartCenterDiv = styled.div<IStyleProps>`
+  ${commonTheme.flex.column.start.center};
+  ${(props: any) => propsCommonStyle(props)};
+`;
 const ColumnEndDiv = styled.div<IStyleProps>`
   ${commonTheme.flex.column.end}
   ${(props: any) => propsCommonStyle(props)};
@@ -97,6 +114,21 @@ const ColumnCenterDiv = styled.div<IStyleProps>`
 const ColumnCenterCenterDiv = styled.div<IStyleProps>`
   width: 100%;
   ${commonTheme.flex.column.center.center}
+  ${(props: any) => propsCommonStyle(props)};
+`;
+
+const GridColumn2 = styled.div<IStyleProps>`
+  ${commonTheme.grid.column2};
+  ${(props: any) => propsCommonStyle(props)};
+`;
+
+const GridColumn3 = styled.div<IStyleProps>`
+  ${commonTheme.grid.column3};
+  ${(props: any) => propsCommonStyle(props)};
+`;
+
+const GridColumn4 = styled.div<IStyleProps>`
+  ${commonTheme.grid.column4};
   ${(props: any) => propsCommonStyle(props)};
 `;
 
@@ -198,9 +230,14 @@ export const CC = {
   ColumnLeftDiv,
   ColumnBetweenDiv,
   ColumnDiv,
+  ColumnStartDiv,
+  ColumnStartCenterDiv,
   ColumnCenterDiv,
   ColumnCenterCenterDiv,
   ColumnEndDiv,
+  GridColumn2,
+  GridColumn3,
+  GridColumn4,
   ErrorDiv,
   Img,
   ImgContainer,
