@@ -102,7 +102,7 @@ const EconomicPerformanceEvaluation = (props: any) => {
           <Line options={options} data={data} />
         </RateBox>
         <RatingBox>
-          <TitleBox> 분기점 </TitleBox>
+          <TitleBox> 투자회수기간 </TitleBox>
           <div> {labelsData?.length ? labelsData?.length : 0} 년 </div>{' '}
         </RatingBox>
       </CC.RowDiv>
