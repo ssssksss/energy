@@ -103,10 +103,9 @@ const EconomicPerformanceEvaluation = (props: any) => {
         </RateBox>
         <RatingBox>
           <TitleBox>
-            {' '}
             투자회수
             <br />
-            기간{' '}
+            기간
           </TitleBox>
           <div> {labelsData?.length ? labelsData?.length : 0} 년 </div>{' '}
         </RatingBox>
@@ -123,6 +122,8 @@ const Container = styled.section`
 `;
 const TitleBox = styled.h1`
   padding: 10px 0px;
+  ${props => props.theme.flex.row.center};
+  text-align: center;
 `;
 const RateBox = styled.div`
   position: relative;
